@@ -1,4 +1,8 @@
-import { ArrowDown, ArrowUpRight, Code2, Mail, Terminal } from 'lucide-react'
+import { ArrowDown, Code2, Mail, Terminal } from 'lucide-react'
+import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
+import ProjectCard from '../components/ProjectCard'
+import { useEffect } from 'react'
 
 const skills = [
   'Java',
@@ -35,7 +39,7 @@ const projects = [
     description:
       'A full-stack language learning platform designed to connect students with educational content and personalised learning experiences. The platform combines online courses, downloadable learning materials and a booking system for one-to-one language classes.',
     stack: ['React', 'TypeScript', 'Prisma', 'Supabase', 'PostgreSQL'],
-    detailsUrl: '',
+    detailsUrl: '/mojo',
     liveUrl: '',
   },
   {
@@ -46,7 +50,7 @@ const projects = [
     description:
       'An e-commerce platform featuring product catalogues, shopping cart, checkout, authentication and administration functionality.',
     stack: ['Angular', 'Firebase', 'Stripe'],
-    detailsUrl: '',
+    detailsUrl: '/spain-in-you',
     liveUrl: 'https://finalproject-guillermo.web.app',
   },
   {
@@ -57,44 +61,21 @@ const projects = [
     description:
       'Redesigned and customised the frontend of an established e-commerce website using PrestaShop. Improved the visual identity, user experience and responsive design across the entire platform, including product pages, navigation and key website sections.',
     stack: ['PrestaShop', 'HTML5', 'CSS3', 'JavaScript', 'SEO'],
-    detailsUrl: '',
+    detailsUrl: '/indiluz',
     liveUrl: 'https://indiluz.com/',
   },
 ]
 
 function Home() {
+  useEffect(() => {
+    if (window.location.hash === '#projects') {
+      document.getElementById('projects')?.scrollIntoView()
+    }
+  }, [])
   return (
     <main className="min-h-screen overflow-hidden bg-[#080d19] text-slate-100">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-white/5 bg-[#080d19]/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <a href="#" className="text-xl font-bold tracking-tight">
-            GRS<span className="text-blue-500">.</span>
-          </a>
-
-          <div className="hidden items-center gap-8 text-sm text-slate-400 md:flex">
-            <a href="#about" className="transition hover:text-white">
-              About
-            </a>
-            <a href="#projects" className="transition hover:text-white">
-              Projects
-            </a>
-            <a href="#experience" className="transition hover:text-white">
-              Experience
-            </a>
-            <a href="#contact" className="transition hover:text-white">
-              Contact
-            </a>
-          </div>
-
-          <a
-            href="mailto:guillermoruizsenso@outlook.com"
-            className="rounded-lg border border-blue-500/40 px-4 py-2 text-sm text-blue-300 transition hover:bg-blue-500/10"
-          >
-            Let's talk <ArrowUpRight className="ml-1 inline h-4 w-4" />
-          </a>
-        </div>
-      </nav>
+      <NavBar />
 
       {/* Hero */}
       <section className="relative mx-auto max-w-7xl px-6 pb-24 pt-24 md:pb-32 md:pt-32">
@@ -296,86 +277,9 @@ function Home() {
           principles to build practical applications.
         </p>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {projects.map(project => (
-            <article
-              key={project.number}
-              className="group overflow-hidden rounded-2xl border border-white/10 bg-[#0c1424] transition-all duration-300 hover:-translate-y-2 hover:border-blue-400/40 hover:shadow-2xl hover:shadow-blue-950/30"
-            >
-              {/* Project image */}
-
-              <div className="relative h-[320px] overflow-hidden bg-[#0c1424]">
-                <img
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  className="h-full w-full object-contain object-top"
-                />
-
-                <span className="absolute left-4 top-4 rounded-lg border border-white/20 bg-[#080d19]/90 px-3 py-1.5 font-mono text-xs text-blue-300 backdrop-blur-md">
-                  PROJECT / {project.number}
-                </span>
-
-                {project.category.includes('In Development') && (
-                  <span className="absolute right-4 top-4 rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-1.5 text-xs font-medium text-amber-300 backdrop-blur-md">
-                    In Development
-                  </span>
-                )}
-              </div>
-
-              {/* Project information */}
-              <div className="p-7">
-                <p className="text-xs font-semibold uppercase tracking-wider text-blue-400">
-                  {project.category}
-                </p>
-
-                <h3 className="mt-3 text-2xl font-bold transition-colors group-hover:text-blue-300">
-                  {project.title}
-                </h3>
-
-                <p className="mt-4 min-h-24 leading-7 text-slate-400">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {project.stack.map(tech => (
-                    <span
-                      key={tech}
-                      className="rounded-md border border-blue-400/10 bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Links */}
-                {(project.detailsUrl || project.liveUrl) && (
-                  <div className="mt-8 flex flex-wrap gap-3 border-t border-white/5 pt-6">
-                    {project.detailsUrl && (
-                      <a
-                        href={project.detailsUrl}
-                        className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
-                      >
-                        View Case Study
-                        <ArrowUpRight className="ml-1 inline h-4 w-4" />
-                      </a>
-                    )}
-
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="rounded-lg border border-slate-700 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-blue-400 hover:text-blue-300"
-                      >
-                        Live Demo
-                        <ArrowUpRight className="ml-1 inline h-4 w-4" />
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-            </article>
+            <ProjectCard key={project.number} project={project} />
           ))}
         </div>
       </section>
@@ -390,29 +294,6 @@ function Home() {
 
           <div className="mt-12 space-y-6">
             <article className="rounded-2xl border border-white/10 bg-[#0c1424] p-7">
-              <p className="text-sm text-blue-400">Feb 2025 – Jun 2025</p>
-              <h3 className="mt-2 text-xl font-bold">
-                Software Developer Intern — AutoJob.app
-              </h3>
-              <p className="mt-1 text-sm text-slate-500">Dublin, Ireland</p>
-              <p className="mt-5 leading-7 text-slate-400">
-                Contributed to the development of a mobile application using
-                React Native and Firebase, working on application features and
-                the integration of mobile and backend services.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {['React Native', 'JavaScript', 'Firebase'].map(tech => (
-                  <span
-                    key={tech}
-                    className="rounded-md bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </article>
-
-            <article className="rounded-2xl border border-white/10 bg-[#0c1424] p-7">
               <p className="text-sm text-blue-400">Jan 2026 – Present</p>
               <h3 className="mt-2 text-xl font-bold">
                 Freelance E-Commerce Web Developer
@@ -425,6 +306,29 @@ function Home() {
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {['PrestaShop', 'PHP', 'MySQL'].map(tech => (
+                  <span
+                    key={tech}
+                    className="rounded-md bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </article>
+
+            <article className="rounded-2xl border border-white/10 bg-[#0c1424] p-7">
+              <p className="text-sm text-blue-400">Feb 2025 – Jun 2025</p>
+              <h3 className="mt-2 text-xl font-bold">
+                Software Developer Intern — AutoJob.app
+              </h3>
+              <p className="mt-1 text-sm text-slate-500">Dublin, Ireland</p>
+              <p className="mt-5 leading-7 text-slate-400">
+                Contributed to the development of a mobile application using
+                React Native and Firebase, working on application features and
+                the integration of mobile and backend services.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {['React Native', 'JavaScript', 'Firebase'].map(tech => (
                   <span
                     key={tech}
                     className="rounded-md bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300"
@@ -484,10 +388,7 @@ function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-white/5 px-6 py-7 text-center text-sm text-slate-500">
-        © {new Date().getFullYear()} Guillermo Ruiz Senso. Built with React &
-        Tailwind CSS.
-      </footer>
+      <Footer />
     </main>
   )
 }

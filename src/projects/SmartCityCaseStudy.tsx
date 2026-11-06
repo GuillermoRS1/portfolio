@@ -10,6 +10,7 @@ import {
   ShieldAlert,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import NavBar from '../components/NavBar'
 
 const technologies = [
   'Java 21',
@@ -61,22 +62,7 @@ function SmartCityCaseStudy() {
         <div className="absolute -top-64 right-[-100px] h-[600px] w-[600px] rounded-full bg-blue-600/[0.10] blur-[160px]" />
       </div>
 
-      {/* Navigation */}
-      <header className="relative z-10 border-b border-white/[0.06]">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <Link to="/" className="text-lg font-bold tracking-tight">
-            GRS<span className="text-blue-400">.</span>
-          </Link>
-
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-blue-400"
-          >
-            <ArrowLeft size={17} />
-            Back to portfolio
-          </Link>
-        </nav>
-      </header>
+      <NavBar />
 
       {/* Hero */}
       <section className="relative mx-auto max-w-6xl px-6 pb-24 pt-24 md:pt-32">
