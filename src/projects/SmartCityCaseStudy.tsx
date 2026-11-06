@@ -1,5 +1,4 @@
 import {
-  ArrowLeft,
   ArrowUpRight,
   Boxes,
   Database,

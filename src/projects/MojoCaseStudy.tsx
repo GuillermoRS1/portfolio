@@ -1,5 +1,4 @@
 import {
-  ArrowLeft,
   ArrowUpRight,
   BookOpen,
   CalendarDays,
