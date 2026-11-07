@@ -31,6 +31,7 @@ export default function NavBar() {
             >
               About
             </a>
+            <a href="#skills">Skills</a>
             <a
               href="#projects"
               className="text-sm text-slate-400 transition hover:text-white"
